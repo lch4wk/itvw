@@ -14,19 +14,19 @@ class Object {
 public:
     Object() {
         ++counter;
-        _counter += 50;
         cout << "(2) counter = " << counter << endl;
     }
     static int getCounter() { return counter; }
 private:
     static int counter;
-    static int _counter;
 };
 
 int Object::counter = 0; // initializing the static in
 
 
 int main(int argc, char const *argv[]) {
+  // cout << "6.關鍵字static的作用是什麼？" << endl;
+  /*
   // cout << "這個簡單的問題很少有人能回答完全。在C語言中，關鍵字static有三個明顯的作用︰\
   //           a.在函數本體內(in Function Block)，一個被宣告為靜態的變數，在這一函數被呼叫過\
   //             程中維持其值不變。\
@@ -36,6 +36,7 @@ int main(int argc, char const *argv[]) {
   //             這個函數被限制在宣告它的Block的本地範圍內使用。大多數應試者能正確回答第一部分\
   //             ，一部分能正確回答第二部分，同是很少的人能懂得第三部分。這是一個應試者的嚴重\
   //             的缺點，因為他顯然不懂得本地化資料和程式碼範圍的好處和重要性。" << endl;
+  */
 /*
 static 4種用法
 (1) C/C++ 中 static 放在區域變數之前
@@ -53,17 +54,18 @@ static 4種用法
          是表示在 c/cpp 檔裡該變數無法被其他 c/cpp 檔用 extern 來使用。 */
 
   /* (3) static 放在 class 的 member variable 之前，稱為靜態成員變數 (static member variable)，
-         靜態成員變數是不屬於任何一個實體 (instance)，即所有的實體共享這個變數， */
+         靜態成員變數是不屬於任何一個實體 (instance)，即所有class產生的實體皆可共享這個變數， */
  Object obj1;
  Object obj2;
  Object obj3;
 
  /* (4) static 放在 class 的 member function 之前，稱為靜態成員函式 (static member function)，
  靜態成員函式是不屬於任何一個實體 (instance)，即不需要任何實體就可以呼叫該類別的成員函式，*/
- // 若getCounter沒有宣告成static則會編譯失敗，因為scope範疇問題
- cout << "(4) " << Object::getCounter() << endl;
+ // 若getCounter沒有宣告成static則會編譯失敗
+ cout << "(4) " << Object::getCounter() << endl; //有static的成員函數可以不用實體就呼叫
  Object obj4;
  cout << "(4) " << Object::getCounter() << endl;
+ cout << "(4) " << obj4.getCounter() << endl;
 
 
   return 0;
